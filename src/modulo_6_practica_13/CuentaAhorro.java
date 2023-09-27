@@ -19,7 +19,7 @@ public class CuentaAhorro extends CuentaBancaria {
 	private final int MONTO_CUENTA_INACTIVA = 100;
 	private final int MINIMO_RETIRO = 4;
 	private final float COMISION_POR_RETIRO_EXTRA = 1.5f;
-	// private boolean isActive = false;
+	// private boolean isActive;
 
 	// CONSTRUCTORES
 	public CuentaAhorro(float saldo, float tasaAnual) {
@@ -28,25 +28,35 @@ public class CuentaAhorro extends CuentaBancaria {
 	}
 
 	// METODOS
-	public boolean cuentaActiva() {
+	// el metodo isActive chequea si la cuenta tiene un saldo mayor a 100 para
+	// quedar activa
+	public boolean isActive() {
 		return getSaldo() > MONTO_CUENTA_INACTIVA;
 	}
 
+	// se sobreescribe metodo en el cual chequea si esta activa la cuenta y luego
+	// llama al metodo de la superClase para realizar la operacion
+
 	@Override
 	public void ingresoACuenta(float ingreso) {
-		if (cuentaActiva())
+		if (isActive())
 			super.ingresoACuenta(ingreso);
 	}
 
+	// se sobreescribe metodo en el cual chequea si esta activa la cuenta y luego
+	// llama al metodo de la superClase para realizar la operacion
+
 	@Override
 	public void retiroDeCuenta(float retiro) {
-		if (cuentaActiva()) {
+		if (isActive()) {
 			super.retiroDeCuenta(retiro);
 		}
 	}
 
-	// El metodo verifique la cantidad de retiros pasados de 4 y devuelve
-	// el total de la comision por retiro mayores a 4
+	// El metodo verifique la cantidad de retiros, si es mayor a 4 se calcula la
+	// diferencia
+	// y se multiplica por la cantidad de la comision de retiros extras y devuelve
+	// el valor total de la comision
 	private float comisionRetiroExtra() {
 		float totalComision = 0;
 		if (getNumeroRetiros() > MINIMO_RETIRO) {
@@ -57,7 +67,8 @@ public class CuentaAhorro extends CuentaBancaria {
 
 	@Override
 	public void extractoMensual() {
-		if (cuentaActiva()) {
+		// se chequea que la cuenta este activa para realizar la transaccion
+		if (isActive()) {
 			subtractSaldo((COMISION_MENSUAL + comisionRetiroExtra()));
 			calcularInteresMensual();
 		}
@@ -66,12 +77,18 @@ public class CuentaAhorro extends CuentaBancaria {
 
 	@Override
 	public String imprimirDatos() {
+		// devulve los datos de saldo de la cuenta, comision y numeros totales de
+		// transacciones
 		int totalMovimientos = getNumeroIngresos() + getNumeroRetiros();
 		StringBuilder builder = new StringBuilder();
-		builder.append("CuentaAhorro [Saldo Cuenta=");
-		builder.append(getSaldo());
+		builder.append("CuentaAhorro \n[\nSaldo Cuenta=");
+		builder.append(dosDecimales(getSaldo()));
+		builder.append(" €");
+		builder.append("\nCuenta Activa=");
+		builder.append(isActive());
 		builder.append("\nComision Mensual=");
 		builder.append(COMISION_MENSUAL);
+		builder.append(" €");
 		builder.append("\nNumero de transacciones realizadas=");
 		builder.append(totalMovimientos);
 		builder.append("\n]");

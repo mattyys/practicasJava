@@ -7,7 +7,7 @@ package modulo_6_practica_13;
 public class MainBanco {
 
 	public static void main(String[] args) {
-		// pruebaCuentaAhorro();
+		pruebaCuentaAhorro();
 		pruebaCuentaCorriente();
 	}
 
@@ -29,7 +29,12 @@ public class MainBanco {
 		System.out.println(cuentaAhorro.imprimirDatos());
 		cuentaAhorro.extractoMensual();
 		System.out.println(cuentaAhorro.imprimirDatos());
-
+		cuentaAhorro.retiroDeCuenta(1800f);
+		System.out.println(cuentaAhorro.imprimirDatos());
+		cuentaAhorro.retiroDeCuenta(180f);
+		System.out.println(cuentaAhorro.imprimirDatos());
+		cuentaAhorro.ingresoACuenta(150f);
+		System.out.println(cuentaAhorro.imprimirDatos());
 	}
 
 	public static void pruebaCuentaCorriente() {
@@ -37,9 +42,12 @@ public class MainBanco {
 
 		cuentaCorriente.ingresoACuenta(500f);
 		cuentaCorriente.retiroDeCuenta(800f);
+		System.out.println(cuentaCorriente.imprimirDatos());
 		cuentaCorriente.retiroDeCuenta(1500);
 		System.out.println(cuentaCorriente.imprimirDatos());
 		cuentaCorriente.ingresoACuenta(350f);
+		System.out.println(cuentaCorriente.imprimirDatos());
+		cuentaCorriente.extractoMensual();
 		System.out.println(cuentaCorriente.imprimirDatos());
 
 	}

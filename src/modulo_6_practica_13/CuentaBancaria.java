@@ -34,54 +34,64 @@ public class CuentaBancaria {
 	}
 
 	// METODOS
+
+	// addSaldo permite ir sumando los ingresos
 	public void addSaldo(float importe) {
 		this.saldo += importe;
 	}
 
+	// subtractSaldo permite ir restando los retiros
 	public void subtractSaldo(float importe) {
 		this.saldo -= importe;
 	}
 
+	// ingresa un monto a la cuenta y actualiza su saldo
+	// aumenta el numero de movimientos de ingresos
 	public void ingresoACuenta(float ingreso) {
-		// ingresa un monto a la cuenta y actualiza su saldo
-		// aumenta el numero de ingresos
 		addSaldo(ingreso);
 		numeroIngresos++;
 	}
 
-	// hice el metodo boolean para que devuelva si se hizo o no la operacion
+	// hace retiro a cuenta y actualiza saldo
+	// actualiza numero retiros
 	public void retiroDeCuenta(float retiro) {
-		// hace retiro a cuenta y actualiza saldo
-		// actualiza numero retiros
 		if (getSaldo() >= retiro) {
 			subtractSaldo(retiro);
 			numeroRetiros++;
 		}
 	}
 
+	// Se calcula el interes mensual dividiendo la tasa anual entre 12
+	// se hace la multiplicacion por el saldo si y se obtiene el importe del interes
 	protected void calcularInteresMensual() {
-		// Se calcula el interes mensual dividiendo la tasa anual entre 12
-		// se hace la multiplicacion por el saldo si se obtiene el importe del interes
 		float interesMensual = getSaldo() * (getTasaAnual() / 12);
 		// se agrega a la cuenta
 		addSaldo(interesMensual);
 	}
 
+	// se chequea que la cuenta no este en 0
+	// se retira la comision mensual
+	// se calcula el interes mensaul llamando al metodo anterior
 	public void extractoMensual() {
-		// se resta la comison mensual calculando el interes
-		// se utiliza el metododo calcularInteresMensual()
 		if (getSaldo() > 0) {
 			subtractSaldo(COMISION_MENSUAL);
 			calcularInteresMensual();
 		}
 	}
 
+	// esta funcion toma el valor de un float y devuelve solo 2 cifras despues de la
+	// coma
+	public static float dosDecimales(float monto) {
+		return (Math.round(monto * 100f) / 100f);
+	}
+
+	// devuelve los valores de los atributos
 	public String imprimirDatos() {
-		// devuelve los valores de los atributos
 		StringBuilder builder = new StringBuilder();
 		builder.append("[ ");
 		builder.append("\nSaldo Cuenta: ");
-		builder.append(getSaldo());
+		builder.append(dosDecimales(getSaldo()));
+		builder.append(" €");
 		builder.append("\nNumero de Ingresos: ");
 		builder.append(getNumeroIngresos());
 		builder.append("\nNumero de Retiros: ");
@@ -90,8 +100,9 @@ public class CuentaBancaria {
 		float tasaAn = tasaAnual * 100;
 		builder.append(tasaAn);
 		builder.append(" %");
-		builder.append("\nComision Mensuial: ");
+		builder.append("\nComision Mensual: ");
 		builder.append(COMISION_MENSUAL);
+		builder.append(" €");
 		builder.append("\n]");
 		return builder.toString();
 	}
