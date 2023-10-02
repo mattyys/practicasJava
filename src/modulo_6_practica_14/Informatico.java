@@ -2,13 +2,14 @@ package modulo_6_practica_14;
 
 public class Informatico extends PAS {
 	// ATRIBUTOS
-	private final int HORAS_SEMANA = 40;
-	private final long VALOR_HORA = 6;
+	protected final static int HORAS_SEMANA = 40;
+	protected final static int VALOR_HORA = 6;
+
 	// CONSTRUCTORES
-
-	public Informatico(String nombre, String dni, String horasExtras) {
-
+	public Informatico(String nombre, String dni, double cantHorasExtras, int cantidadSexenios) {
+		super(nombre, dni, cantHorasExtras, cantidadSexenios);
+		setHorasPorSemana(HORAS_SEMANA);
+		setValorHora(VALOR_HORA);
 	}
 
-	// METODOS
 }

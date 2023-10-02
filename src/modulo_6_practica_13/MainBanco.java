@@ -11,6 +11,7 @@ public class MainBanco {
 		pruebaCuentaCorriente();
 	}
 
+	// este procedimiento es para probar la cuenta de Ahorro
 	public static void pruebaCuentaAhorro() {
 		CuentaBancaria cuentaAhorro = new CuentaAhorro(1000F, 12f);
 
@@ -37,6 +38,7 @@ public class MainBanco {
 		System.out.println(cuentaAhorro.imprimirDatos());
 	}
 
+	// este procedimiento es para probar la cuenta corriente
 	public static void pruebaCuentaCorriente() {
 		CuentaBancaria cuentaCorriente = new CuentaCorriente(1500, 12f);
 

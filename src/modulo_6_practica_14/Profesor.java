@@ -2,11 +2,15 @@ package modulo_6_practica_14;
 
 public class Profesor extends PDI {
 	// ATRIBUTOS
-	private final int HORAS_SEMANA = 37;
-	private final long VALOR_HORA = 8;
-	private boolean isSexenio;
+	protected final static int HORAS_SEMANA = 37;
+	protected final static double VALOR_HORA = 8;
 
 	// CONSTRUCTORES
 
-	// METODOS
+	public Profesor(String nombre, String dni, int cantSexenios) {
+		super(nombre, dni, cantSexenios);
+		setHorasPorSemana(HORAS_SEMANA);
+		setValorHora(VALOR_HORA);
+	}
+
 }

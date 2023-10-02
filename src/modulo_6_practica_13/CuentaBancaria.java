@@ -1,6 +1,6 @@
 package modulo_6_practica_13;
 
-public class CuentaBancaria {
+public abstract class CuentaBancaria {
 	// ATRIBUTOS
 	private float saldo;
 	private int numeroIngresos = 0;
