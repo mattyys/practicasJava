@@ -3,7 +3,7 @@ package ejerciciosVarios;
 public class Deberes290923 {
 
 	public static void main(String[] args) {
-		// 1 - hacer una calculadora con menu
+		// 1 - hacer una calculadora con menu - hecho en modulo de poo
 
 		// 2 - calcular el factorial de un numero solicitado - hecho
 
@@ -22,7 +22,7 @@ public class Deberes290923 {
 		}
 	}
 
-	// factorial por for
+	// factorial por for sin recursividada
 	public static int calcularFactorial2(int n) {
 		int total = 1;
 		for (int i = 2; i <= n; i++) {
