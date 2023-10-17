@@ -71,11 +71,11 @@ public class Carta implements Comparable<Carta> {
 	 */
 	@Override
 	public int compareTo(Carta carta) {
-		if (this.palo.compareTo(carta.palo) == 0) {
+		if (this.palo.compareTo(carta.palo) == 0) {// si el palo es igual pasa a ordenar por numero
 			return Integer.compare(AlgoritmoOrdenacion.getValorCarta(this.numero),
 			        AlgoritmoOrdenacion.getValorCarta(carta.numero));
 
-		} else {
+		} else {// primero ordena por palo
 			return this.palo.compareTo(carta.palo);
 		}
 	}

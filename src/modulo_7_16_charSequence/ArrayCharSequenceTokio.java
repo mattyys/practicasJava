@@ -10,52 +10,41 @@ public class ArrayCharSequenceTokio implements CharSequenceTokio {
 
 	@Override
 	public int length() {
-		int cont = 0;
-		for (int i = 0; i < cadena.length; i++) {
-			cont++;
-		}
-		return cont;
-
+		return cadena.length;
 	}
 
 	@Override
 	public char charAt(int index) {
-		char caracter = 0;
+
 		if (index < 0 || index >= cadena.length) {
-			return caracter;
+			return '\0';
 		} else {
-			for (int i = 0; i < cadena.length; i++) {
-				if (i == index)
-					caracter = cadena[i];
-			}
+			return cadena[index];
 		}
-		return caracter;
+
 	}
 
 	@Override
 	public CharSequenceTokio subSequence(int start, int end) {
-		String sequence = "";
-
-		if (start >= 0 && start < cadena.length) {
-			if (end < cadena.length && end > start) {
-				for (int i = 0; i < cadena.length; i++) {
-					if (i >= start && i < end)
-						sequence += cadena[i];
+		StringBuilder sequence = new StringBuilder();
+		if (start != end) {
+			if (start >= 0 && start < cadena.length && end <= cadena.length && end >= start) {
+				for (int i = start; i < end; i++) {
+					sequence.append(cadena[i]);
 				}
+			} else {
+				return null;
 			}
+			return new ArrayCharSequenceTokio(sequence.toString());
+		} else {
+			return new ArrayCharSequenceTokio("");
 		}
-		CharSequenceTokio charSqT = new ArrayCharSequenceTokio(sequence);
-		return charSqT;
+
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		for (char c : cadena) {
-			builder.append(c);
-
-		}
-		return builder.toString();
+		return new String(cadena);
 	}
 
 }

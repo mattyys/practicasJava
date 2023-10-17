@@ -27,11 +27,12 @@ public class OrdNumIncPal extends AlgoritmoOrdenacion {
 	Comparator<Carta> numeroPalo = (c1, c2) -> {
 
 		// chequea que NO sean iguales las cartas para comparar su valor e ir ordenando
+		// si los numeros son iguales ordena por palo
 		if (AlgoritmoOrdenacion.getValorCarta(c1.getNumero()) != AlgoritmoOrdenacion.getValorCarta(c2.getNumero())) {
 			return AlgoritmoOrdenacion.getValorCarta(c1.getNumero())
 			        - AlgoritmoOrdenacion.getValorCarta(c2.getNumero());
 		} else {
-			// luego ordenar por numero chequa el palo y lo ordena alfabeticamente.
+			// luego de ordenar por numero chequa el palo y lo ordena alfabeticamente.
 			return c1.compareTo(c2);
 		}
 	};
