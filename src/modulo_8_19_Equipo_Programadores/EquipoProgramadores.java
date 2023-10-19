@@ -3,8 +3,8 @@ package modulo_8_19_Equipo_Programadores;
 
 public class EquipoProgramadores {
 
-	final int MAX_INTEGRANTES = 3;
-	final int MIN_INTEGRANTES = 2;
+	public final int MAX_INTEGRANTES = 3;
+	public final int MIN_INTEGRANTES = 2;
 
 	private String nombreEquipo;
 	private String universidad;
@@ -14,6 +14,7 @@ public class EquipoProgramadores {
 
 	private int count = 0;
 
+	// CONSTUCTORES
 	public EquipoProgramadores() {
 		super();
 		programadores = new Programador[MAX_INTEGRANTES];
@@ -31,6 +32,7 @@ public class EquipoProgramadores {
 
 	// 2. metodo para aniadir programadores, si esta lleno se lanza una excepcion
 
+	// GETTERS Y SETTERS
 	public String getNombreEquipo() {
 		return nombreEquipo;
 	}
@@ -55,34 +57,52 @@ public class EquipoProgramadores {
 		this.lenguaje = lenguaje;
 	}
 
-	public void addProgramador() throws MinimoIntegreantesNoAlcanzadoException {
+	/**
+	 * Adds the programador.
+	 * <p>
+	 * Agrega el programador recibidop por parametro, cheuqea que no se supere el
+	 * limite permitido Si lo supera lanza la excepcion
+	 * </p>
+	 *
+	 * @param programador the programador
+	 */
+	public void addProgramador(Programador programador) {
 
-		// cambiandop menu de programador para para controlar las cantidades ingresadas
-
-		if (count == MAX_INTEGRANTES - 1) {
+		if (count == MAX_INTEGRANTES)
 			throw new IndexOutOfBoundsException("Se llego al limite por equipo :: 3 integrantes");
+		else
+			programadores[count++] = programador;
+
+	}
+
+	/**
+	 * Checks if is min complete.
+	 * <p>
+	 * Chequea si se llego al minimo de integrantes en el equipo
+	 * </p>
+	 *
+	 * @return true, if is min complete
+	 */
+	public boolean isMinComplete() {
+		if (count < MIN_INTEGRANTES) {
+			return false;
 		} else {
-			Programador programador = new Programador();
-			for (int i = count; i < programadores.length; i++) {
-
-			}
-			programadores[count] = programador;
-			// isMinComplete(count);
-			count++;
+			return true;
 		}
-	}
-
-	private boolean isMinComplete() throws MinimoIntegreantesNoAlcanzadoException {
-		if (count < MIN_INTEGRANTES - 1) {
-			throw new MinimoIntegreantesNoAlcanzadoException(
-			        "Ingrese un nuevo Programador para Completar el minimo requerido");
-		}
-		return true;
 
 	}
 
+	/**
+	 * Imprimir datos equipo.
+	 * <p>
+	 * Devuelve toda la informacion del equipo creado
+	 * </p>
+	 *
+	 * @return the string
+	 */
 	public String imprimirDatosEquipo() {
 		StringBuilder builder = new StringBuilder();
+		int num = 1;
 		builder.append("Nombre Equipo = ");
 		builder.append(nombreEquipo);
 		builder.append("\nUniversidad = ");
@@ -93,6 +113,8 @@ public class EquipoProgramadores {
 		for (Programador programador : programadores) {
 			if (programador != null) {
 				builder.append("\n");
+				builder.append(num++);
+				builder.append(".- ");
 				builder.append(programador);
 			}
 		}
